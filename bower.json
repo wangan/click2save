@@ -1,0 +1,33 @@
+{
+  "name": "click2save",
+  "description": "It's a chrome extension for save the picture that you want to save , with one click.",
+  "main": "background.js",
+  "authors": [
+    "anntony.wang@live.com"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "chrome",
+    "extension",
+    "save",
+    "picture",
+    "image",
+    "click"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "homepage": "https://github.com/wangan/click2save",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.0",
+    "angular": "~1.4.8"
+  }
+}

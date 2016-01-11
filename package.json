@@ -1,0 +1,39 @@
+{
+    "name": "click2save",
+    "version": "1.0.0",
+    "description": "It's a chrome extension for save the picture that you want to save , with one click.",
+    "main": "background.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wangan/click2save.git"
+    },
+    "keywords": [
+        "chrome",
+        "extension",
+        "save",
+        "picture",
+        "image",
+        "click"
+    ],
+    "author": "anntony.wang@live.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wangan/click2save/issues"
+    },
+    "homepage": "https://github.com/wangan/click2save#readme",
+    "dependencies": {
+        "gulp": "^3.9.0",
+        "bower": "^1.7.2"
+    },
+    "devDependencies": {
+        "gulp": "3.9.0",
+        "gulp-concat": "2.5.2",
+        "gulp-cssmin": "0.1.7",
+        "gulp-flatten": "^0.2.0",
+        "gulp-uglify": "1.2.0",
+        "rimraf": "2.2.8"
+    }
+}

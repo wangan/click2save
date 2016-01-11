@@ -1,0 +1,37 @@
+{
+    "name": "Click2Save",
+    "version": "0.1",
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "./js/background.js"
+        ]
+    },
+    "options_page": "./html/options.html",
+    "browser_action": {
+        "default_icon": "Click2Save.png",
+        "default_popup": "./html/popup.html",
+        "default_title": "Click2Save"
+    },
+    "permissions": [
+        "tabs",
+        "nativeMessaging",
+        "downloads",
+        "http://*/*",
+        "https://*/*",
+        "file://*/*",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": [
+                "./js/core.js"
+            ],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ]
+}

@@ -8,18 +8,28 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify")
 
 var paths = {
-    webroot: "./"
+    root: "./",
+    chrome: "./chrome/"
 };
 
-paths.js = paths.webroot + "js/**/*.js";
-paths.minJs = paths.webroot + "js/**/*.min.js";
-paths.css = paths.webroot + "css/**/*.css";
-paths.minCss = paths.webroot + "css/**/*.min.css";
-paths.concatJsDest = paths.webroot + "js/site.min.js";
-paths.concatCssDest = paths.webroot + "css/site.min.css";
-paths.commonLib_JS = paths.webroot + "bower_components/*/dist/**/*.min.js";
-paths.commonLib_CSS = paths.webroot + "bower_components/*/dist/**/*.min.css";
-paths.commonLib_Font = paths.webroot + "bower_components/*/dist/fonts/*.*";
+paths.js = paths.root + "js/**/*.js";
+paths.minJs = paths.root + "js/**/*.min.js";
+paths.css = paths.root + "css/**/*.css";
+paths.minCss = paths.root + "css/**/*.min.css";
+paths.concatJsDest = paths.root + "js/site.min.js";
+paths.concatCssDest = paths.root + "css/site.min.css";
+paths.commonLib_JS = paths.root + "bower_components/*/dist/**/*.min.js";
+paths.commonLib_CSS = paths.root + "bower_components/*/dist/**/*.min.css";
+paths.commonLib_Font = paths.root + "bower_components/*/dist/fonts/*.*";
+paths.chrom_res = [
+    paths.root + "manifest.json",
+    paths.root + "image/Click2Save.png",
+    paths.root + "css/**/*.*",
+    paths.root + "fonts/**/*.*",
+    paths.root + "html/**/*.*",
+    paths.root + "js/**/*.*"
+];
+
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);
@@ -34,19 +44,19 @@ gulp.task("clean", ["clean:js", "clean:css"]);
 gulp.task("copy:js", function () {
     gulp.src(paths.commonLib_JS)
         .pipe(flatten({ includeParents: [1, 0] }))
-        .pipe(gulp.dest(paths.webroot + "js/"))
+        .pipe(gulp.dest(paths.root + "js/"))
 })
 
 gulp.task("copy:css", function () {
     gulp.src(paths.commonLib_CSS)
         .pipe(flatten({ includeParents: [1, 0] }))
-        .pipe(gulp.dest(paths.webroot + "css/"))
+        .pipe(gulp.dest(paths.root + "css/"))
 })
 
 gulp.task("copy:fonts", function () {
     gulp.src(paths.commonLib_Font)
         .pipe(flatten({ includeParents: [0, 0] }))
-        .pipe(gulp.dest(paths.webroot + "fonts/"))
+        .pipe(gulp.dest(paths.root + "fonts/"))
 })
 
 gulp.task("min:js", function () {
@@ -63,5 +73,14 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("."));
 });
 
+
+gulp.task("pack:chrome", function () {
+    gulp.src(paths.chrom_res, { base: "." })
+        .pipe(flatten({ includeParents: [1, 1] }))
+        .pipe(gulp.dest(paths.chrome))
+
+});
+
+gulp.task("pack", ["pack:chrome"]);
 gulp.task("min", ["min:js", "min:css"]);
 gulp.task("copy", ["copy:js", "copy:css", "copy:fonts"]);

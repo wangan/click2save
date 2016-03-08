@@ -112,9 +112,17 @@ define("Event", function(require, module, exports) {
                         }
                         break;
                 }
-                var index = window.domains[document.domain];
-                if (index >= 0 && window.rules[index].status) {
+
+                var index = window.domains ? window.domains[document.domain] : -1;
+                if (!window.rules || !window.domains || !index || (index >= 0 && window.rules[index].status)) {
+
+                    /* Process url */
                     console.log(objUrl);
+                    if ((index = objUrl.indexOf("?")) > 0)
+                        objUrl = objUrl.substring(0, index);
+
+                    console.log(objUrl);
+                    
                     console.log(typeof (objUrl));
                     if ((objUrl && tools.IsPicture(objUrl))) {
                         chrome.extension.sendRequest(

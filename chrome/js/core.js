@@ -1,6 +1,7 @@
 console.log("exec core.js");
+window.BB = {};
 
-(function (MM) {
+(function(MM) {
     if (window.define) {
         return
     }
@@ -15,7 +16,7 @@ console.log("exec core.js");
         MM[name] = func;
 
         if (name === "Init") {
-            require("Init")();
+            require("Init")(window);
         }
     }
 
@@ -24,12 +25,12 @@ console.log("exec core.js");
 
 /* 模块定义 */
 
-define("Chrome", function (require, module, exports) {
+define("Chrome", function(require, module, exports) {
     return chrome;
 });
 
-define("Tools", function (require, module, exports) {
-    exports.IsPicture = function (objUrl) {
+define("Tools", function(require, module, exports) {
+    exports.IsPicture = function(objUrl) {
         var strFilter = ".jpeg|.gif|.jpg|.png|.bmp|.pic|";
         if (objUrl.indexOf(".") > -1) {
             var p = objUrl.lastIndexOf(".");
@@ -48,43 +49,34 @@ define("Tools", function (require, module, exports) {
     return module.exports;
 });
 
-define("Storage", function (require, module, exports) {
+define("Storage", function(require, module, exports) {
 
     var tools = require("Tools");
     var chrome = require("Chrome");
 
-    exports.ReadThis = function (key) {
-        chrome.storage.sync.get([key], function (data) {
-            console.log(data);
-
-            return data;
+    exports.ReadThis = function(key, callback) {
+        chrome.storage.sync.get([key], function(data) {
+            callback(data);
         });
     }
 
-    exports.Read = function (a_Keys) {
-        chrome.storage.sync.get(a_Keys, function (data) {
-            console.log(data);
-
-            return data;
+    exports.Read = function(a_Keys, callback) {
+        chrome.storage.sync.get(a_Keys, function(data) {
+            callback(data);
         });
     }
 
-    exports.WriteThis = function (key, value) {
+    exports.WriteThis = function(key, value) {
         var data = {};
         data[key] = value;
-        console.log(data);
-        chrome.storage.sync.set(data, function () {
-            console.log("Over");
-        });
-
-        chrome.storage.sync.get([key], function (data) {
-            console.log(data);
+        chrome.storage.sync.set(data, function() {
+            console.log("WriteThis Over");
         });
     }
 
-    exports.Write = function (o_KV) {
-        chrome.storage.sync.set(o_KV, function () {
-            console.log("Over");
+    exports.Write = function(o_KV) {
+        chrome.storage.sync.set(o_KV, function() {
+            console.log("Write Over");
         });
     }
 
@@ -92,13 +84,13 @@ define("Storage", function (require, module, exports) {
 });
 
 
-
-define("Event", function (require, module, exports) {
+define("Event", function(require, module, exports) {
     var tools = require("Tools");
     var chrome = require("Chrome");
+    var storage = require("Storage");
 
-    exports.Bind = function () {
-        document.addEventListener('click', function (e) {
+    exports.Bind = function() {
+        document.addEventListener('click', function(e) {
             console.log(e);
             console.log(e.srcElement.tagName);
             console.log(e.srcElement.style);
@@ -120,23 +112,25 @@ define("Event", function (require, module, exports) {
                         }
                         break;
                 }
+                var index = window.domains[document.domain];
+                if (index >= 0 && window.rules[index].status) {
+                    console.log(objUrl);
+                    console.log(typeof (objUrl));
+                    if ((objUrl && tools.IsPicture(objUrl))) {
+                        chrome.extension.sendRequest(
+                            {
+                                url: objUrl,
+                                baseUrl: window.location,
+                                tagName: e.srcElement.tagName
+                            },
+                            function(response) {
+                                console.log(response);
+                            });
 
-                console.log(objUrl);
-                console.log(typeof (objUrl));
-                if ((objUrl && tools.IsPicture(objUrl))) {
-                    chrome.extension.sendRequest(
-                        {
-                            url: objUrl,
-                            baseUrl: window.location,
-                            tagName: e.srcElement.tagName
-                        },
-                        function (response) {
-                            console.log(response);
-                        });
-
-                    e.returnValue = false;
-                    e.stopPropagation();
-                    e.preventDefault();
+                        e.returnValue = false;
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
                 }
             }
         }, true)
@@ -145,15 +139,24 @@ define("Event", function (require, module, exports) {
     return module.exports;
 });
 
-define("Init", function (require, module, exports) {
-    module.exports = function (param) {
+define("Init", function(require, module, exports) {
+    module.exports = function(window) {
         var event = require("Event");
         event.Bind();
 
+        /* Test data */
         var storage = require("Storage");
-        storage.WriteThis("M", "1");
+        storage.WriteThis("Rules", [
+            { "domain": "www.cnblogs.com", "url": "http://www.cnblogs.com/", "location": "", "status": false }
+        ]);
 
-        console.log(storage.ReadThis("M"));
+        storage.ReadThis("Rules", function(data) {
+            window.rules = data.Rules;
+            window.domains = {};
+            for (i = 0; i < window.rules.length; i++) {
+                window.domains[window.rules[i].domain] = i;
+            }
+        });
     }
 
     return module.exports;

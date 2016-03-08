@@ -1,0 +1,22 @@
+body{      
+}
+.container{  
+    height: 600px;
+    margin: 0 auto;
+    border:1px solid #000;  
+}
+
+.sidebar{    
+    display: inline-block;
+    width: 30%;
+    height: 600px;
+    border:1px solid #000;  
+    margin: 0 5px;
+}
+
+.main{    
+    display: inline-block;   
+    height: 600px;
+    border:1px solid #000; 
+    margin-right: 5px; 
+}

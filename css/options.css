@@ -1,0 +1,86 @@
+body {
+    width: 800px;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.container {
+    border: 1px solid #ccc;
+    height: 800px;
+}
+
+.sidebar {
+    margin: 5px;
+    color: #ccc;
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #ccc;
+}
+
+.info {
+    height: 100px;
+}
+
+.info .icon{    
+    height: 64px;
+}
+
+.info a {
+    display: block;
+    line-height: 40px;
+    color: #ccc;
+}
+
+.op,
+.info {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.op-btn {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    display: block;
+    margin: 5px auto 0px;
+    width: 150px;
+    height: 50px;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.op-btn-text {
+    font-size: 16px;
+    color: #000;
+    line-height: 3;
+}
+
+.op-btn:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    text-decoration: none;
+}
+
+.main {
+    display: inline-block;
+    border: 1px solid #000;
+}

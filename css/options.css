@@ -26,7 +26,7 @@ ul {
     height: 100px;
 }
 
-.info .icon{    
+.info .icon {
     height: 64px;
 }
 
@@ -46,14 +46,17 @@ ul {
     border: 1px solid #ccc;
 }
 
+.op {
+    height: 650px;
+}
+
 .op-btn {
+    width: 150px;
+    height: 30px;
     color: #333;
     background-color: #e6e6e6;
-    border-color: #adadad;
-    display: block;
+    border-color: #adadad; 
     margin: 5px auto 0px;
-    width: 150px;
-    height: 50px;
     display: inline-block;
     padding: 6px 12px;
     font-size: 14px;
@@ -70,7 +73,7 @@ ul {
 .op-btn-text {
     font-size: 16px;
     color: #000;
-    line-height: 3;
+    line-height: 2;
 }
 
 .op-btn:hover {

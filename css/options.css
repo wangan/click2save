@@ -1,3 +1,15 @@
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+@media screen and (min-width: 240px) {
+    html {
+        font-size: 50px;
+    }
+}
+
 body {
     width: 800px;
     padding: 0px;
@@ -55,7 +67,7 @@ ul {
     height: 30px;
     color: #333;
     background-color: #e6e6e6;
-    border-color: #adadad; 
+    border-color: #adadad;
     margin: 5px auto 0px;
     display: inline-block;
     padding: 6px 12px;
@@ -86,4 +98,36 @@ ul {
 .main {
     display: inline-block;
     border: 1px solid #000;
+}
+
+.checkbox {
+    -webkit-appearance: none;
+    display: inline-block;
+    width: .5rem;
+    height: .3rem;
+    background: #ccc;
+    border-radius: .15rem;
+    border: 0;
+}
+
+.checkbox:checked {
+    background: #4BD863;
+}
+
+.checkbox::before {
+    display: block;
+    width: .28rem;
+    height: 0.28rem;
+    margin: .01rem 0 0 .01rem;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transition: all .1s linear 0s;
+}
+
+.checkbox:checked::before {
+    margin: .01rem .01rem 0 .21rem;
+}
+
+.checkbox::before {
+    content: '';
 }

@@ -1,4 +1,4 @@
-@media screen and (min-width: 320px) {
+/*@media screen and (min-width: 320px) {
     html {
         font-size: 100px;
     }
@@ -8,7 +8,7 @@
     html {
         font-size: 50px;
     }
-}
+}*/
 
 body {
     width: 800px;
@@ -19,19 +19,32 @@ body {
 ul {
     list-style: none;
     padding: 0px;
+    margin: 0px;
+    overflow: hidden;
 }
 
 .container {
     border: 1px solid #ccc;
-    height: 800px;
+    /*height: 800px;*/
+}
+
+.sidebar,
+.main {
+    display: inline-block;
+    height: 700px;
+    border: 1px solid #000;
+    vertical-align: top;
+    margin: 5px;
 }
 
 .sidebar {
-    margin: 5px;
     color: #ccc;
     display: inline-block;
     width: 200px;
-    border: 1px solid #ccc;
+}
+
+.op {
+    height: 500px;
 }
 
 .info {
@@ -58,19 +71,14 @@ ul {
     border: 1px solid #ccc;
 }
 
-.op {
-    height: 650px;
-}
-
 .op-btn {
-    width: 150px;
-    height: 30px;
+    width: 175px;
+    height: 50px;
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
     margin: 5px auto 0px;
     display: inline-block;
-    padding: 6px 12px;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.42857143;
@@ -85,7 +93,8 @@ ul {
 .op-btn-text {
     font-size: 16px;
     color: #000;
-    line-height: 2;
+    line-height: 50px;
+    display: block;
 }
 
 .op-btn:hover {
@@ -93,11 +102,6 @@ ul {
     background-color: #e6e6e6;
     border-color: #adadad;
     text-decoration: none;
-}
-
-.main {
-    display: inline-block;
-    border: 1px solid #000;
 }
 
 .checkbox {
@@ -130,4 +134,76 @@ ul {
 
 .checkbox::before {
     content: '';
+}
+
+.main {
+    width: 565px;
+    font-size: 14px;
+}
+
+tr {
+    text-align: center;
+}
+
+.data-url {
+    width: 150px;
+}
+
+.data-location {
+    width: 130px;
+}
+
+.data-domain {
+    width: 120px;
+}
+
+.data-id {
+    width: 20px;
+}
+
+.data-status,
+data-op {
+    width: 40px;
+}
+
+table {
+    background-color: #fcfcfc;
+    font-size: 14px;
+}
+
+.main {
+    position: relative;
+    overflow-y: scroll;
+}
+
+td,
+th {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 10px 2px;
+}
+
+tr:hover {
+    background-color: lightgreen;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.data-op {}
+
+.data-op-bar {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: 10px;
+    background: #ccc;
+    line-height: 50px;
+    height: 50px;
+    margin: 5px;
+}
+.data-op-bar button {
+    margin: 5px 10px;
 }

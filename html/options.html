@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>选项</title>
     <link href="../css/options.css" rel="stylesheet" />
+    <script src="../js/options.js" type="text/javascript"></script>
     <!--<link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="../js/jquery/jquery.min.js"></script>
     <script src="../js/bootstrap/bootstrap.min.js"></script>-->
@@ -25,24 +26,34 @@
                 <ul>
                     <li>
                         <a class="op-btn" href="#">
-                            <span class="op-btn-text">规则查询</span>
+                            <span data-action="search-rules" class="op-btn-text">规则查询</span>
                         </a>
                     </li>
                     <li>
                         <a class="op-btn" href="#">
-                            <span class="op-btn-text">规则管理</span>
+                            <span data-action="manage-rules" class="op-btn-text">规则管理</span>
                         </a>
-                    </li>
-                    <li>
-                        <input type="checkbox" class="checkbox" checked="checked" />
                     </li>
                 </ul>
             </div>
         </li>
         <li class="main">
+            <div id="main">
+
+            </div>
+            <div class="data-op-bar">
+                <input data-action="all" type="checkbox">全选</input>
+                <button data-action="forbid">禁用</button>
+                <button data-action="active">启用</button>
+                <button data-action="delete">删除</button>
+            </div>
         </li>
     </ul>
 
+
+    <!--<li>
+                        <input id= type="checkbox" class="checkbox" checked="checked" />
+                    </li>-->
     <!--<ul class="nav nav-tabs nav-tabs-justified">
             <li class="active">
                 <a href="#rule-list">规则列表</a>
